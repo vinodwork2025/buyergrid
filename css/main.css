@@ -240,12 +240,20 @@ ul, ol { list-style: none; }
 
 .logo {
   display: inline-flex;
-  align-items: baseline;
-  gap: 0;
+  align-items: center;
   text-decoration: none;
-  line-height: 1;
+  flex-shrink: 0;
 }
 
+.logo-img {
+  display: block;
+  height: 40px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+}
+
+/* Footer text fallback stays as-is (dark bg, image won't work) */
 .logo-buyer {
   font-family: var(--f-serif);
   font-size: 1.45rem;
