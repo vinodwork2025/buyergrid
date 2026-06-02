@@ -58,7 +58,7 @@
 
 /* === 2. RESET & BASE ====================================== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; font-size: 18px; }
 body {
   font-family: var(--f-body);
   font-size: 1rem;
