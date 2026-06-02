@@ -461,13 +461,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .panel-stat:last-child { border-bottom: none; }
 
 .panel-stat-num {
-  font-family: var(--f-display);
-  font-size: 1.5rem;
+  font-family: var(--f-body);
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--white);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   line-height: 1;
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 .panel-stat-label {
@@ -509,13 +510,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .stat-num {
   display: block;
-  font-family: var(--f-display);
+  font-family: var(--f-body);
   font-size: clamp(2rem, 4vw, 2.9rem);
   font-weight: 700;
   line-height: 1;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
   color: var(--forest);
   margin-bottom: 0.3rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .stat-num--brass { color: var(--brass); }
@@ -577,12 +579,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .nri-big-num {
   display: block;
-  font-family: var(--f-display);
+  font-family: var(--f-body);
   font-size: clamp(3rem, 8vw, 5.5rem);
   font-weight: 700;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
   line-height: 1;
   color: var(--forest);
+  font-variant-numeric: tabular-nums;
 }
 
 .nri-big-tag {
@@ -665,13 +668,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .group-count {
-  font-family: var(--f-display);
-  font-size: 1.1rem;
+  font-family: var(--f-body);
+  font-size: 1rem;
   font-weight: 700;
   color: var(--forest);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   white-space: nowrap;
   text-align: right;
+  font-variant-numeric: tabular-nums;
 }
 
 .group-count span {
@@ -792,11 +796,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .coverage-count {
-  font-family: var(--f-display);
-  font-size: 1.1rem;
+  font-family: var(--f-body);
+  font-size: 1rem;
   font-weight: 700;
   color: var(--forest);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
 }
 
 .coverage-bar {
@@ -1016,12 +1021,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .pkg-now {
-  font-family: var(--f-display);
-  font-size: 1.05rem;
+  font-family: var(--f-body);
+  font-size: 1rem;
   font-weight: 700;
   color: var(--forest);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   line-height: 1.15;
+  font-variant-numeric: tabular-nums;
 }
 
 .pkg-now--brass { color: var(--brass); }
