@@ -1,61 +1,60 @@
-/* BuyerGrid — main.js
-   Counter animation on scroll-into-view. No dependencies. */
-
+/* BuyerGrid — main.js */
 (function () {
   'use strict';
 
-  // Animate stat counters when they enter the viewport
-  function animateCounter(el) {
-    const target = parseInt(el.dataset.count, 10);
-    const suffix = el.dataset.suffix || '';
-    const duration = 1400;
-    const start = performance.now();
-
-    function tick(now) {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      // Ease out cubic
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = Math.floor(eased * target);
-
-      if (target >= 1000) {
-        el.textContent = current.toLocaleString('en-IN') + suffix;
-      } else {
-        el.textContent = current + suffix;
-      }
-
-      if (progress < 1) requestAnimationFrame(tick);
-      else {
-        if (target >= 1000) {
-          el.textContent = target.toLocaleString('en-IN') + suffix;
-        } else {
-          el.textContent = target + suffix;
-        }
-      }
-    }
-
-    requestAnimationFrame(tick);
-  }
-
-  // Use IntersectionObserver to trigger on first view
+  // ── Scroll reveal ────────────────────────────────────────────
   if ('IntersectionObserver' in window) {
-    const counters = document.querySelectorAll('[data-count]');
-    const observer = new IntersectionObserver(function (entries) {
+    var revealObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          observer.unobserve(entry.target);
+          entry.target.classList.add('is-visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      revealObs.observe(el);
+    });
+  } else {
+    // Fallback: show all immediately
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      el.classList.add('is-visible');
+    });
+  }
+
+  // ── Coverage bar animation ───────────────────────────────────
+  if ('IntersectionObserver' in window) {
+    var barObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          barObs.unobserve(entry.target);
         }
       });
     }, { threshold: 0.4 });
 
-    counters.forEach(function (el) { observer.observe(el); });
+    document.querySelectorAll('.coverage-bar-fill').forEach(function (el) {
+      barObs.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.coverage-bar-fill').forEach(function (el) {
+      el.classList.add('animate');
+    });
   }
 
-  // Smooth scroll for anchor links (fallback for browsers without CSS smooth-scroll)
+  // ── FAQ toggle icon ──────────────────────────────────────────
+  document.querySelectorAll('.faq-item').forEach(function (item) {
+    item.addEventListener('toggle', function () {
+      var toggle = item.querySelector('.faq-toggle');
+      if (toggle) toggle.textContent = item.open ? '−' : '+';
+    });
+  });
+
+  // ── Smooth scroll for anchor links ──────────────────────────
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener('click', function (e) {
-      const target = document.querySelector(this.getAttribute('href'));
+      var target = document.querySelector(this.getAttribute('href'));
       if (target) {
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
